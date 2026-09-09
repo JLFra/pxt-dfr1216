@@ -1,6 +1,6 @@
 {
   "name": "dfr1216",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "DFRobot DFR1216 driver for micro:bit",
   "license": "MIT",
   "files": [
