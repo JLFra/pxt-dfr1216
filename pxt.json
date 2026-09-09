@@ -1,0 +1,13 @@
+{
+  "name": "dfr1216",
+  "version": "0.1.1",
+  "description": "DFRobot DFR1216 driver for micro:bit",
+  "license": "MIT",
+  "files": [
+    "main.ts",
+    "README.md"
+  ],
+  "dependencies": {
+    "core": "*"
+  }
+}
