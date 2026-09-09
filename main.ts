@@ -130,13 +130,12 @@ namespace DFR1216 {
     //% block="lire entrée logique %pin"
     //% weight=70
     export function lireEntree(pin: DigitalPin): number {
-        pins.setPull(pin, PinPullMode.PullDown)
         return pins.digitalReadPin(pin)
     }
 
 
     /**
-     * Set pull up digital input.
+     * Set pull Down digital input.
      *
      * The micro:bit pin is  configured with its
      * internal pull-down resistor. This is intended for a switch
