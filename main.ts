@@ -145,7 +145,7 @@ namespace DFR1216 {
      */
     //% block="fixer etat %pin bas"
     //% weight=70
-    export function FixerSortie(pin: DigitalPin): number {
+    export function FixerSortie(pin: DigitalPin): void {
         pins.setPull(pin, PinPullMode.PullDown)
     }
 
