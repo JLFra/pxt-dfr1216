@@ -4,15 +4,13 @@ Extension non officielle pour la carte **DFRobot DFR1216** avec micro:bit.
 
 ## Fonctions
 
-- 4 moteurs DC, vitesse `-255..255`
-  - positif = avant
-  - négatif = arrière
-  - 0 = arrêt
+- 4 moteurs DC, vitesse `0..255`
+- commande pour tourner dans un sens (avancer) puis dans le sens contraire (reculer)
 - arrêt d'un moteur
 - arrêt des 4 moteurs
 - lecture logique des broches micro:bit (`P0`, `P1`, `P2`, etc.)
 - écriture logique sur les broches micro:bit
-- configuration entrée/sortie
+- configuration en lecture pour du pull down avec interrupteur entre Vcc et Pin...
 
 ## Installation
 
