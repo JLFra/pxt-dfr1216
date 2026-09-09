@@ -2,6 +2,7 @@
 // Based on DFRobot's official DFRobot_UnihikerExpansion protocol.
 // I2C address: 0x33
 // Motor PWM period: 255
+// Autor Julien LAUNAY  julien.launay@ac-lyon.fr
 
 namespace DFR1216 {
     const I2C_ADDR = 0x33
@@ -49,7 +50,7 @@ namespace DFR1216 {
      * Rotate one motor clockwise.
      * Speed is always positive: 0..255.
      */
-    //% block="moteur %motor CW vitesse %speed"
+    //% block="moteur %motor avance vitesse %speed"
     //% motor.min=1 motor.max=4 motor.defl=1
     //% speed.min=0 speed.max=255 speed.defl=100
     //% weight=100
@@ -70,7 +71,7 @@ namespace DFR1216 {
      * Rotate one motor counter-clockwise.
      * Speed is always positive: 0..255.
      */
-    //% block="moteur %motor CCW vitesse %speed"
+    //% block="moteur %motor recule vitesse %speed"
     //% motor.min=1 motor.max=4 motor.defl=1
     //% speed.min=0 speed.max=255 speed.defl=100
     //% weight=99
@@ -121,9 +122,9 @@ namespace DFR1216 {
     /**
      * Read a digital input.
      *
-     * The micro:bit pin is automatically configured with its
+     * The micro:bit pin must be first set with its
      * internal pull-down resistor. This is intended for a switch
-     * wired between 3.3V and the selected pin:
+     * wired between 3.3V (VCC pin) and the selected pin:
      *   switch open  -> 0
      *   switch closed -> 1
      */
