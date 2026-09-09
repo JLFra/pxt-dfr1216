@@ -134,6 +134,23 @@ namespace DFR1216 {
         return pins.digitalReadPin(pin)
     }
 
+
+    /**
+     * Set pull up digital input.
+     *
+     * The micro:bit pin is  configured with its
+     * internal pull-down resistor. This is intended for a switch
+     * wired between 3.3V and the selected pin:
+     *   switch open  -> 0
+     *   switch closed -> 1
+     */
+    //% block="fixer etat %pin bas"
+    //% weight=70
+    export function FixerSortie(pin: DigitalPin): number {
+        pins.setPull(pin, PinPullMode.PullDown)
+    }
+
+    
     /**
      * Write a digital output.
      *
