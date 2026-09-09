@@ -22,7 +22,7 @@ Le dossier doit être placé dans un dépôt GitHub sous le nom `pxt-dfr1216`, p
 
 Exemple :
 
-`https://github.com/VOTRE_COMPTE/pxt-dfr1216`
+`https://github.com/JLFra//pxt-dfr1216`
 
 ## Matériel
 
