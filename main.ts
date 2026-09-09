@@ -46,29 +46,45 @@ namespace DFR1216 {
     }
 
     /**
-     * Set one motor. Speed: -255..255.
-     * Positive = forward, negative = backward, 0 = stop.
+     * Rotate one motor clockwise.
+     * Speed is always positive: 0..255.
      */
-    //% block="moteur %motor vitesse %speed"
+    //% block="moteur %motor CW vitesse %speed"
     //% motor.min=1 motor.max=4 motor.defl=1
-    //% speed.min=-255 speed.max=255 speed.defl=100
+    //% speed.min=0 speed.max=255 speed.defl=100
     //% weight=100
-    export function moteur(motor: number, speed: number): void {
+    export function moteurCW(motor: number, speed: number): void {
         ensureInit()
 
         if (motor < 1) motor = 1
         if (motor > 4) motor = 4
-        if (speed < -255) speed = -255
+        if (speed < 0) speed = 0
         if (speed > 255) speed = 255
 
         let r = motorRegisters(motor)
-        if (speed >= 0) {
-            write16(r[0], speed)
-            write16(r[1], 0)
-        } else {
-            write16(r[0], 0)
-            write16(r[1], -speed)
-        }
+        write16(r[0], speed)
+        write16(r[1], 0)
+    }
+
+    /**
+     * Rotate one motor counter-clockwise.
+     * Speed is always positive: 0..255.
+     */
+    //% block="moteur %motor CCW vitesse %speed"
+    //% motor.min=1 motor.max=4 motor.defl=1
+    //% speed.min=0 speed.max=255 speed.defl=100
+    //% weight=99
+    export function moteurCCW(motor: number, speed: number): void {
+        ensureInit()
+
+        if (motor < 1) motor = 1
+        if (motor > 4) motor = 4
+        if (speed < 0) speed = 0
+        if (speed > 255) speed = 255
+
+        let r = motorRegisters(motor)
+        write16(r[0], 0)
+        write16(r[1], speed)
     }
 
     /**
@@ -78,7 +94,14 @@ namespace DFR1216 {
     //% motor.min=1 motor.max=4 motor.defl=1
     //% weight=90
     export function arreterMoteur(motor: number): void {
-        moteur(motor, 0)
+        ensureInit()
+
+        if (motor < 1) motor = 1
+        if (motor > 4) motor = 4
+
+        let r = motorRegisters(motor)
+        write16(r[0], 0)
+        write16(r[1], 0)
     }
 
     /**
@@ -96,38 +119,31 @@ namespace DFR1216 {
     }
 
     /**
-     * Read a digital input on a micro:bit edge connector pin.
+     * Read a digital input.
+     *
+     * The micro:bit pin is automatically configured with its
+     * internal pull-down resistor. This is intended for a switch
+     * wired between 3.3V and the selected pin:
+     *   switch open  -> 0
+     *   switch closed -> 1
      */
     //% block="lire entrée logique %pin"
     //% weight=70
     export function lireEntree(pin: DigitalPin): number {
+        pins.setPull(pin, PinPullMode.PullDown)
         return pins.digitalReadPin(pin)
     }
 
     /**
-     * Write a digital output on a micro:bit edge connector pin.
+     * Write a digital output.
+     *
+     * The pin is automatically used as a digital output.
      */
     //% block="écrire sortie logique %pin = %state"
+    //% state.shadow="toggleOnOff"
     //% weight=60
-    export function ecrireSortie(pin: DigitalPin, state: number): void {
+    export function ecrireSortie(pin: DigitalPin, state: boolean): void {
         pins.digitalWritePin(pin, state ? 1 : 0)
     }
 
-    /**
-     * Set a micro:bit pin as digital input.
-     */
-    //% block="configurer %pin en entrée"
-    //% weight=50
-    export function configurerEntree(pin: DigitalPin): void {
-        pins.setPull(pin, PinPullMode.PullNone)
-    }
-
-    /**
-     * Set a micro:bit pin as digital output.
-     */
-    //% block="configurer %pin en sortie"
-    //% weight=40
-    export function configurerSortie(pin: DigitalPin): void {
-        pins.digitalWritePin(pin, 0)
-    }
 }
